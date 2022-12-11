@@ -342,7 +342,7 @@ class Connection:
         while True:
             try:
                 if self._halted:
-                    await asyncio.sleep(2, loop=self._loop)
+                    await asyncio.sleep(2)
                 else:
                     self.log.debug(
                         "Connecting to Network Receiver at %s:%d", self.host, self.port
@@ -366,7 +366,7 @@ class Connection:
                 self._increase_retry_interval()
                 interval = self._get_retry_interval()
                 self.log.debug("Connecting failed, retrying in %i seconds", interval)
-                await asyncio.sleep(interval, loop=self._loop)
+                await asyncio.sleep(interval)
 
     async def connect(self):
         """Establish the AVR device connection"""
